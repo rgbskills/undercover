@@ -16,8 +16,8 @@ export const Icons = {
   logo: () => (
     <Image
       priority
-      width={246}
-      height={43}
+      width={131}
+      height={51}
       src="/logo.svg"
       alt="UnderCover logo"
     />
