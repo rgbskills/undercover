@@ -57,8 +57,6 @@ export default function RootLayout({
         <Hero
           images={heroImages}
           button={{text: "Show me more", href: "/shop"}}
-          title="Get the perfect desk pad!"
-          subtitle="We have a wide variety of desk pads of all shapes and sizez. We have something for everyone!"
         />
         <div className='container mx-auto'>
           {children}

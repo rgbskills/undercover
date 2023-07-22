@@ -6,11 +6,10 @@ export const Icons = {
   fakeAvatar: () => (
     <Image
       priority
-      width={32}
-      height={32}
+      width={48}
+      height={48}
       src="/fakeAvatar.png"
       alt="Avatar Placeholder"
-      className="rounded-md"
     />
   ),
   logo: () => (

@@ -9,7 +9,7 @@ type ButtonProps = {
 };
 
 const Button: React.FC<ButtonProps> = ({ href, onClick, children, className }) => {
-  const buttonClasses = `flex items-center gap-3 h-12 px-6 rounded-md bg-blue-950 text-sm font-semibold ${className}`;
+  const buttonClasses = `flex items-center gap-3 h-12 px-6 rounded-md bg-blue-950 text-sm font-semibold hover:bg-blue-900 transition-all ${className}`;
 
   if (href) {
     return (

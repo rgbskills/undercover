@@ -28,7 +28,7 @@ function Navigation() {
                     key={index}
                     href={item.href}
                     passHref={true}
-                    className="uppercase text-white font-semibold text-sm"
+                    className="uppercase text-blue-100 hover:text-white font-semibold text-sm"
                   >
                     {item.title}
                   </Link>
@@ -36,9 +36,15 @@ function Navigation() {
             )}
           </nav>
         ) : null}
-          <Button onClick={() => console.log("Add to cart")}><Icons.cart /> <span>5</span></Button>
         <div className="flex gap-6">
-          <Button href="/login"><Icons.fakeAvatar /> <span>Zoltan Benko</span></Button>
+          <Button onClick={() => console.log("Add to cart")}>
+            <Icons.cart />
+            <span>5</span>
+          </Button>
+          <Button href="/login" className="overflow-hidden">
+            <span className="-ml-6"><Icons.fakeAvatar /></span>
+            <span className="ml-3">Zoltan Benko</span>
+          </Button>
         </div>
       </div>
     </div>
