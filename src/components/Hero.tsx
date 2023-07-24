@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "./Button";
+import { usePathname } from 'next/navigation'
 
 type ImageObject = {
   width: number;
@@ -24,6 +25,7 @@ const Hero: React.FC<HeroProps> = ({ images, button, interval = 3000 }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [isReversed, setIsReversed] = useState(false);
   const totalImages = images.length;
+  const pathname = usePathname()
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
@@ -46,6 +48,9 @@ const Hero: React.FC<HeroProps> = ({ images, button, interval = 3000 }) => {
 
     return () => clearInterval(slideInterval);
   }, [currentImage, totalImages, interval, isReversed]);
+
+  // return null if not on homepage
+  if (pathname !== '/') return null
 
   /**
    * By default all images are invisible, then they will fade in on top of each other

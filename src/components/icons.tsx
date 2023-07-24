@@ -1,17 +1,30 @@
-import { MdShoppingCart } from "react-icons/md";
+import {
+  MdShoppingCart,
+  MdPerson,
+  MdVisibility,
+  MdVisibilityOff,
+  MdFormatListBulleted,
+  MdCategory,
+  MdStorefront,
+  MdKeyboardReturn,
+  MdPlace,
+  MdAccountCircle,
+  MdPowerSettingsNew
+ } from "react-icons/md";
 import Image from 'next/image';
 
 export const Icons = {
   cart: () => <MdShoppingCart size={24} />,
-  fakeAvatar: () => (
-    <Image
-      priority
-      width={48}
-      height={48}
-      src="/fakeAvatar.png"
-      alt="Avatar Placeholder"
-    />
-  ),
+  show: () => <MdVisibility size={24} />,
+  hide: () => <MdVisibilityOff size={24} />,
+  user: () => <MdPerson size={24} />,
+  orders:() => <MdFormatListBulleted size={24} />,
+  categories:() => <MdCategory size={24} />,
+  companies:() => <MdStorefront size={24} />,
+  returns:() => <MdKeyboardReturn size={24} />,
+  addresses:() => <MdPlace size={24} />,
+  account:() => <MdAccountCircle size={24} />,
+  logout:() => <MdPowerSettingsNew size={24} />,
   logo: () => (
     <Image
       priority

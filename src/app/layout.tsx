@@ -4,6 +4,7 @@ import { Open_Sans } from 'next/font/google'
 import { siteConfig } from '@/config/site'
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
+import { ServerAuthProvider } from "@/auth/server-auth-provider";
 
 const OpenSans = Open_Sans({
   subsets: ["latin"],
@@ -51,16 +52,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${OpenSans.className} min-h-screen bg-slate-950 font-sans antialiased`}>
-        <div className='container mx-auto'>
-          <Navigation />
-        </div>
-        <Hero
-          images={heroImages}
-          button={{text: "Show me more", href: "/shop"}}
-        />
-        <div className='container mx-auto'>
-          {children}
-        </div>
+        <ServerAuthProvider>
+          <div className='container mx-auto'>
+            <Navigation />
+          </div>
+          <Hero
+            images={heroImages}
+            button={{text: "Show me more", href: "/shop"}}
+          />
+          <div className='container mx-auto'>
+            {children}
+          </div>
+        </ServerAuthProvider>
       </body>
     </html>
   )

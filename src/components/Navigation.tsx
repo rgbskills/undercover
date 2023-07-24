@@ -1,9 +1,11 @@
 "use client"
 import * as React from "react";
 import Link from "next/link";
-import { Icons } from "@/components/icons";
+import { Icons } from "@/components/Icons";
 import { siteConfig } from "@/config/site";
 import Button from "@/components/Button";
+import { useAuth } from "@/auth/context";
+import Image from 'next/image';
 
 interface NavigationItem {
   href: string;
@@ -11,6 +13,8 @@ interface NavigationItem {
 }
 
 function Navigation() {
+  const { user } = useAuth();
+
   return (
     <div className="flex justify-between content-center my-6">
       <div>
@@ -41,10 +45,27 @@ function Navigation() {
             <Icons.cart />
             <span>5</span>
           </Button>
-          <Button href="/login" className="overflow-hidden">
-            <span className="-ml-6"><Icons.fakeAvatar /></span>
-            <span className="ml-3">Zoltan Benko</span>
-          </Button>
+          {!user ? (
+            <Button href="/login" className="overflow-hidden">
+              <Icons.user />
+              <span>Login</span>
+            </Button>
+          ) : (
+            <Button href="/account" className="overflow-hidden">
+              {user.photoURL && (
+                <span className="-ml-6">
+                  <Image
+                    priority
+                    width={48}
+                    height={48}
+                    src={user.photoURL}
+                    alt="username"
+                  />
+                </span>
+              )}
+              <span className="ml-3">{user.displayName}</span>
+            </Button>
+          )}
         </div>
       </div>
     </div>
