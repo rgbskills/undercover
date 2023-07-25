@@ -4,7 +4,7 @@ const nextConfig = {
     serverActions: true,
   },
   images: {
-    domains: ['lh3.googleusercontent.com', 'placekitten.com'],
+    domains: ['lh3.googleusercontent.com', 'placekitten.com', 'picsum.photos'],
   },
 }
 

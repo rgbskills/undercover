@@ -1,14 +1,30 @@
-import React from "react";
+"use client"
+import React, {useState, useEffect} from "react";
 import Image from 'next/image';
 import Table from "@/components/Table";
-import productsData from "./products.json";
 import Dropdown from "@/components/Dropdown";
 import { Icons } from "@/components/Icons";
 import Button from "@/components/Button";
+import { ProductsContext } from "./ProductProvider";
 
 const ProductList = () => {
-  const DrpbtnStyle = "h-7 text-xs text-white uppercase font-semibold hover:bg-blue-800 w-full transition-all"
+  const { setProducts, products } = React.useContext(ProductsContext);
+  const [isLoading, setLoading] = useState(false)
 
+  useEffect(() => {
+    setLoading(true)
+    fetch('/api/products')
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data)
+        setLoading(false)
+      })
+  }, [])
+
+  if (isLoading) return <p>Loading...</p>
+  if (!products) return <p>No products data</p>
+
+  const DrpbtnStyle = "h-7 text-xs text-white uppercase font-semibold hover:bg-blue-800 w-full transition-all"
   const MoreBtn = () => (
     <div className="h-7 px-1 hover:bg-blue-950 flex items-center rounded-md transition-all mr-2">
       <Icons.more />
@@ -17,7 +33,7 @@ const ProductList = () => {
 
   return (
     <Table cols={["Id", "Title", "Price", "Actions"]}>
-      {productsData.map((product) => (
+      {products.map((product) => (
         <>
           <div className="text-xs flex items-center">
             {product.id}

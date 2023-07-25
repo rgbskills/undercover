@@ -9,7 +9,7 @@ const Table: React.FC<TableProps> = ({ cols, children }) => {
   const columnNumber = cols.length;
 
   const Header: React.FC = () => (
-    <div className={`bg-blue-950 uppercase text-xs rounded-md h-12 px-6 font-semibold grid grid-cols-${columnNumber} gap-6`}>
+    <div className={`bg-blue-950 uppercase text-xs rounded-md h-12 px-6 font-semibold grid grid-cols-4 gap-6`}>
       {cols.map((col, index) => (
         <div key={index} className={`flex items-center ${columnNumber-1 === index ? "justify-end" : ""}`}>
           {col}
