@@ -11,7 +11,8 @@ import {
   MdAccountCircle,
   MdPowerSettingsNew,
   MdGroups,
-  MdShoppingBasket
+  MdShoppingBasket,
+  MdMoreHoriz
  } from "react-icons/md";
 import Image from 'next/image';
 
@@ -29,6 +30,7 @@ export const Icons = {
   logout:() => <MdPowerSettingsNew size={24} />,
   users:() => <MdGroups size={24} />,
   products:() => <MdShoppingBasket size={24} />,
+  more:() => <MdMoreHoriz size={24} />,
   logo: () => (
     <Image
       priority
