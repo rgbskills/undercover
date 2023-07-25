@@ -19,7 +19,7 @@ export default function AccountLayout({ children }: AccountLayoutProps) {
           <aside className="lg:w-1/5">
             <AccountMenu />
           </aside>
-          <div className="flex-1 lg:max-w-4xl">
+          <div className="flex-1">
             <AuthWrapper>
               {children}
             </AuthWrapper>
