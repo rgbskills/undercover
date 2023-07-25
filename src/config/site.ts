@@ -49,5 +49,32 @@ export const siteConfig = {
       icon: Icons.account,
       href: "/account/settings",
     }
+  ],
+  adminMenu: [
+    {
+      title: "Orders",
+      icon: Icons.orders,
+      href: "/admin/orders",
+    },
+    {
+      title: "Categories",
+      icon: Icons.categories,
+      href: "/admin/categories",
+    },
+    {
+      title: "Returns & refunds",
+      icon: Icons.returns,
+      href: "/admin/returns",
+    },
+    {
+      title: "Products",
+      icon: Icons.products,
+      href: "/admin/products",
+    },
+    {
+      title: "Users",
+      icon: Icons.users,
+      href: "/admin/users",
+    }
   ]
 }

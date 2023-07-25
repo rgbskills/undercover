@@ -52,18 +52,20 @@ function Navigation() {
             </Button>
           ) : (
             <Button href="/account" className="overflow-hidden">
-              {user.photoURL && (
-                <span className="-ml-6">
-                  <Image
-                    priority
-                    width={48}
-                    height={48}
-                    src={user.photoURL}
-                    alt="username"
-                  />
-                </span>
-              )}
-              <span className="ml-3">{user.displayName}</span>
+              {user.photoURL ? (
+                <>
+                  <span className="-ml-6">
+                    <Image
+                      priority
+                      width={48}
+                      height={48}
+                      src={user.photoURL}
+                      alt="username"
+                    />
+                  </span>
+                  <span className="ml-3">{user.displayName}</span>
+                </>
+              ) : user.displayName}
             </Button>
           )}
         </div>
