@@ -22,7 +22,7 @@ export const ProductsProvider = ({children}) => {
         // set products to empty array to avoid duplicates
         let products = [];
         // add products to the array
-        products = [...state.products, ...action.products];
+        products = action.products;
         return {products: products };
       case productsActions.ADD_PRODUCT:
         return {products: [...state.products, action.product] };
@@ -30,7 +30,7 @@ export const ProductsProvider = ({children}) => {
         const filteredProducts = state.products.filter((product) => product.id !== action.productID);
         return {products: filteredProducts };
       case productsActions.UPDATE_PRODUCT: {
-        const products = state.products.map((product) => product.id === action.product.id ? { ...product } : product);
+        const products = state.products.map((product) => product.id === action.product.id ? { ...action.product } : product);
         return {products: products};
       }
       default:

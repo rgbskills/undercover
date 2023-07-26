@@ -5,11 +5,32 @@ import Table from "@/components/Table";
 import Dropdown from "@/components/Dropdown";
 import { Icons } from "@/components/Icons";
 import Button from "@/components/Button";
+import { useLoadingCallback } from "react-loading-hook";
 import { ProductsContext } from "./ProductProvider";
 
 const ProductList = () => {
   const { setProducts, products } = React.useContext(ProductsContext);
   const [isLoading, setLoading] = useState(false)
+  const { updateProduct, deleteProduct } = React.useContext(ProductsContext);
+  const [handleProductUpdate, isProductUpdateLoading] = useLoadingCallback(async (productId) => {
+    const response = await fetch("/api/products", {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: productId }),
+    });
+    const product = await response.json();
+    updateProduct(product);
+  });
+
+  const [handleProductDelete, isProductDeleteLoading] = useLoadingCallback(async (productId) => {
+    const response = await fetch("/api/products", {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: productId }),
+    });
+    const deletedProductId = await response.json();
+    deleteProduct(deletedProductId);
+  });
 
   useEffect(() => {
     setLoading(true)
@@ -25,6 +46,7 @@ const ProductList = () => {
   if (!products) return <p>No products data</p>
 
   const DrpbtnStyle = "h-7 text-xs text-white uppercase font-semibold hover:bg-blue-800 w-full transition-all"
+
   const MoreBtn = () => (
     <div className="h-7 px-1 hover:bg-blue-950 flex items-center rounded-md transition-all mr-2">
       <Icons.more />
@@ -32,9 +54,9 @@ const ProductList = () => {
   );
 
   return (
-    <Table cols={["Id", "Title", "Price", "Actions"]}>
+    <Table cols={["Id", "Title", "Price", "Actions"]} tableHeadClassName="grid grid-cols-4 gap-6">
       {products.map((product) => (
-        <>
+        <div key={product.id} className="grid grid-cols-4 gap-6 px-6 my-5">
           <div className="text-xs flex items-center">
             {product.id}
           </div>
@@ -50,14 +72,24 @@ const ProductList = () => {
               <Button
                 unstyled
                 className={DrpbtnStyle}
-              >Edit</Button>
+                loading={isProductUpdateLoading}
+                disabled={isProductUpdateLoading}
+                onClick={() => handleProductUpdate(product.id)}
+              >
+                Edit
+              </Button>
               <Button
                 unstyled
                 className={DrpbtnStyle}
-              >Delete</Button>
+                loading={isProductDeleteLoading}
+                disabled={isProductDeleteLoading}
+                onClick={() => handleProductDelete(product.id)}
+              >
+                Delete
+              </Button>
             </Dropdown>
           </div>
-        </>
+        </div>
       ))}
     </Table>
   );

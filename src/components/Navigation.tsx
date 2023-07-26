@@ -45,6 +45,7 @@ function Navigation() {
             <Icons.cart />
             <span>5</span>
           </Button>
+          {/* TODO: this will fail, you also need to check te SSR auth state */}
           {!user ? (
             <Button href="/login" className="overflow-hidden">
               <Icons.user />

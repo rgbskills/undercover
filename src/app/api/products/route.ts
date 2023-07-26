@@ -9,7 +9,7 @@ export async function POST(request: NextRequest) {
   const tokens = await getTokens(request.cookies, authConfig);
 
   if (!tokens) {
-    throw new Error("Cannot update counter of unauthenticated user");
+    throw new Error("There was an error getting tokens");
   }
 
   const fakeProduct = {
@@ -37,4 +37,44 @@ export async function GET() {
     console.error("Error fetching products:", error);
     return NextResponse.error("Failed to fetch products");
   }
+}
+
+export async function PUT(request: NextRequest) {
+  // it's unclear to my why the request obj is a promise, but this is a work around
+  // https://github.com/vercel/next.js/issues/50846
+  const body = await request.json();
+  const tokens = await getTokens(request.cookies, authConfig);
+
+  if (!tokens) {
+    throw new Error("There was an error getting tokens");
+  }
+
+  const fakeProduct = {
+    title: faker.commerce.productName(),
+    price: faker.commerce.price(),
+    imageUrl: faker.image.urlPicsumPhotos({ width: 640, height: 480}),
+  }
+
+  const db = getFirestore(getFirebaseAdminApp());
+  const productRef = db.collection('products').doc(body.id);
+
+  const response = await productRef.update(fakeProduct);
+  return NextResponse.json({id: body.id, ...fakeProduct});
+}
+
+export async function DELETE(request: NextRequest) {
+  // it's unclear to my why the request obj is a promise, but this is a work around
+  // https://github.com/vercel/next.js/issues/50846
+  const body = await request.json();
+  const tokens = await getTokens(request.cookies, authConfig);
+
+  if (!tokens) {
+    throw new Error("There was an error getting tokens");
+  }
+
+  const db = getFirestore(getFirebaseAdminApp());
+  const productRef = db.collection('products').doc(body.id);
+
+  await productRef.delete();
+  return NextResponse.json(body.id);
 }
