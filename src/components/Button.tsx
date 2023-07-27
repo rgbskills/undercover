@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({
 
   if (href) {
     return (
-      <Link href={href} className={buttonClasses} disabled={disabled}>
+      <Link href={href} className={buttonClasses}>
         {loading ? "Loading..." : children}
       </Link>
     );

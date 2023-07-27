@@ -1,13 +1,14 @@
 "use client"
 import { useReducer, createContext } from 'react';
 
-export const CartContext = createContext();
+const initialState = {
+  items: []
+};
+
+export const CartContext = createContext(initialState);
 
 export const CartProvider = ({children}) => {
   // Reducer Initial State and Actions
-  const initialState = {
-    items: []
-  };
   const cartActions = {
     ADD_CART_ITEM: "ADD_CART_ITEM",
     REMOVE_CART_ITEM: "REMOVE_CART_ITEM",

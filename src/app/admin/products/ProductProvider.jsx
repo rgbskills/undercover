@@ -1,13 +1,14 @@
 "use client"
 import { useReducer, createContext } from 'react';
 
-export const ProductsContext = createContext();
+const initialState = {
+  products: []
+};
+
+export const ProductsContext = createContext(initialState);
 
 export const ProductsProvider = ({children}) => {
   // Reducer Initial State and Actions
-  const initialState = {
-    products: []
-  };
   const productsActions = {
     SET_PRODUCTS: "SET_PRODUCTS",
     ADD_PRODUCT: "ADD_PRODUCT",

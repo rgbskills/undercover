@@ -19,6 +19,7 @@ export const getGoogleProvider = (auth: Auth) => {
   const provider = new GoogleAuthProvider();
   provider.addScope("profile");
   provider.addScope("email");
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useDeviceLanguage(auth);
   provider.setCustomParameters({
     display: "popup",
