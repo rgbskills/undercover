@@ -60,14 +60,25 @@ const ProductList = () => {
             {product.id}
           </div>
           <div className="text-sm flex gap-4 items-center">
-            <Image src={product.imageUrl} alt={product.title} width={36} height={36} className="rounded-md" />
+            <Image
+              src={product.imageUrl}
+              alt={product.title}
+              className="
+                rounded-md
+                w-9
+                h-9
+              "
+              quality={100}
+              width="36"
+              height="36"
+            />
             {product.title}
           </div>
           <div className="text-sm flex items-center">
             ${product.price}
           </div>
           <div className="text-sm flex items-center justify-end">
-            <Dropdown text={<MoreBtn />} className="min-w-[100px] rounded-sm">
+            <Dropdown button={<MoreBtn />} className="min-w-[100px] rounded-sm">
               <Button
                 unstyled
                 className={DrpbtnStyle}

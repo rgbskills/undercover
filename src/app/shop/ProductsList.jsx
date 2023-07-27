@@ -28,12 +28,12 @@ export default function Shop() {
         <div key={product.id}>
           <div className='relative'>
             <Image
+              priority={true}
               src={product.imageUrl}
-              width={400}
-              height={400}
-              layout="responsive"
+              width="400"
+              height="400"
               alt={product.title}
-              className='rounded-lg'
+              className='rounded-lg w-full h-auto'
             />
             <div className='absolute bottom-4 right-4 flex'>
               <Button

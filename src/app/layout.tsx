@@ -52,7 +52,11 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${OpenSans.className} min-h-screen bg-slate-950 font-sans antialiased`}>
+      {/*
+        suppressHydrationWarning={true} - gets rid of the
+        "Extra attributes from the server: cz-shortcut-listen" error
+       */}
+      <body suppressHydrationWarning={true} className={`${OpenSans.className} min-h-screen bg-slate-950 font-sans antialiased`}>
         <ServerAuthProvider>
           <CartProvider>
             <div className='container mx-auto'>
