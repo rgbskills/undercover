@@ -13,7 +13,8 @@ const PUBLIC_PATHS = [
   "/hero/slide5.png",
   "/register",
   "/login",
-  "/reset-password"
+  "/reset-password",
+  "/shop"
 ]; // Will redirect to login any path that is not included in this array
 
 function redirectToLogin(request: NextRequest) {
