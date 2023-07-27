@@ -9,9 +9,8 @@ import { useLoadingCallback } from "react-loading-hook";
 import { ProductsContext } from "./ProductProvider";
 
 const ProductList = () => {
-  const { setProducts, products } = React.useContext(ProductsContext);
+  const { setProducts, products, updateProduct, deleteProduct } = React.useContext(ProductsContext);
   const [isLoading, setLoading] = useState(false)
-  const { updateProduct, deleteProduct } = React.useContext(ProductsContext);
   const [handleProductUpdate, isProductUpdateLoading] = useLoadingCallback(async (productId) => {
     const response = await fetch("/api/products", {
       method: 'PUT',
@@ -68,7 +67,7 @@ const ProductList = () => {
             ${product.price}
           </div>
           <div className="text-sm flex items-center justify-end">
-            <Dropdown text={<MoreBtn />} className="min-w-[100px]">
+            <Dropdown text={<MoreBtn />} className="min-w-[100px] rounded-sm">
               <Button
                 unstyled
                 className={DrpbtnStyle}

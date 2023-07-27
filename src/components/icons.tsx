@@ -12,7 +12,11 @@ import {
   MdPowerSettingsNew,
   MdGroups,
   MdShoppingBasket,
-  MdMoreHoriz
+  MdMoreHoriz,
+  MdAddShoppingCart,
+  MdDeleteForever,
+  MdAddCircle,
+  MdRemoveCircle
  } from "react-icons/md";
 import Image from 'next/image';
 
@@ -31,6 +35,10 @@ export const Icons = {
   users:() => <MdGroups size={24} />,
   products:() => <MdShoppingBasket size={24} />,
   more:() => <MdMoreHoriz size={24} />,
+  addtocart: () => <MdAddShoppingCart size={24} />,
+  delete: () => <MdDeleteForever size={14} />,
+  increment: () => <MdAddCircle size={14} />,
+  decrement: () => <MdRemoveCircle size={14} />,
   logo: () => (
     <Image
       priority

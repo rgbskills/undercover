@@ -6,6 +6,7 @@ import { siteConfig } from "@/config/site";
 import Button from "@/components/Button";
 import { useAuth } from "@/auth/context";
 import Image from 'next/image';
+import CartDropdown from "@/components/CartDropdown";
 
 interface NavigationItem {
   href: string;
@@ -41,10 +42,7 @@ function Navigation() {
           </nav>
         ) : null}
         <div className="flex gap-6">
-          <Button onClick={() => console.log("Add to cart")}>
-            <Icons.cart />
-            <span>5</span>
-          </Button>
+          <CartDropdown />
           {/* TODO: this will fail, you also need to check te SSR auth state */}
           {!user ? (
             <Button href="/login" className="overflow-hidden">

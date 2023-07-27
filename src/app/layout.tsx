@@ -5,6 +5,7 @@ import { siteConfig } from '@/config/site'
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/Hero';
 import { ServerAuthProvider } from "@/auth/server-auth-provider";
+import { CartProvider } from "@/app/shop/CartProvider";
 
 const OpenSans = Open_Sans({
   subsets: ["latin"],
@@ -53,16 +54,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${OpenSans.className} min-h-screen bg-slate-950 font-sans antialiased`}>
         <ServerAuthProvider>
-          <div className='container mx-auto'>
-            <Navigation />
-          </div>
-          <Hero
-            images={heroImages}
-            button={{text: "Show me more", href: "/shop"}}
-          />
-          <div className='container mx-auto'>
-            {children}
-          </div>
+          <CartProvider>
+            <div className='container mx-auto'>
+              <Navigation />
+            </div>
+            <Hero
+              images={heroImages}
+              button={{text: "Show me more", href: "/shop"}}
+            />
+            <div className='container mx-auto'>
+                {children}
+            </div>
+          </CartProvider>
         </ServerAuthProvider>
       </body>
     </html>

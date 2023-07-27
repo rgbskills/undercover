@@ -5,6 +5,7 @@ interface DropdownProps {
   children: React.ReactNode;
   text: string | React.ReactNode;
   className?: string;
+  closeOnClickInside?: boolean;
 }
 
 function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: (event: MouseEvent | TouchEvent) => void) {
@@ -24,7 +25,7 @@ function useOnClickOutside(ref: React.RefObject<HTMLElement>, handler: (event: M
   }, [ref, handler]);
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ children, text, className }) => {
+const Dropdown: React.FC<DropdownProps> = ({ children, text, className, closeOnClickInside }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null); // Specify the correct type for the ref
 
@@ -34,13 +35,19 @@ const Dropdown: React.FC<DropdownProps> = ({ children, text, className }) => {
 
   useOnClickOutside(dropdownRef, () => setIsOpen(false));
 
+  const handleContainerClick = () => {
+    if (closeOnClickInside) {
+      setIsOpen(false);
+    }
+  }
+
   return (
     <div ref={dropdownRef} className="dropdown relative" onClick={toggleDropdown}>
       <button className="dropdown-toggle" type="button">
         {text}
       </button>
       {isOpen && (
-        <div className={`dropdown-menu absolute top-full left-0 bg-blue-950 rounded-sm overflow-hidden py-1 z-50 ${className ? className : ""}`}>
+        <div onClick={handleContainerClick} className={`dropdown-menu absolute top-full left-0 bg-blue-950 overflow-hidden py-1 z-50 ${className ? className : ""}`}>
           {children}
         </div>
       )}
