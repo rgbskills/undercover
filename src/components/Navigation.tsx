@@ -7,6 +7,7 @@ import Button from "@/components/Button";
 import { useAuth } from "@/auth/context";
 import Image from 'next/image';
 import CartDropdown from "@/components/CartDropdown";
+import { usePathname } from 'next/navigation'
 
 interface NavigationItem {
   href: string;
@@ -14,10 +15,11 @@ interface NavigationItem {
 }
 
 function Navigation() {
+  const pathname = usePathname()
   const { user } = useAuth();
 
   return (
-    <div className="flex justify-between content-center my-6">
+    <div className={`flex justify-between content-center mt-6 ${pathname === "/" ? "mb-6" : "mb-16"}`}>
       <div>
         <Link href="/" passHref={true} className="flex items-center space-x-2">
           <Icons.logo />

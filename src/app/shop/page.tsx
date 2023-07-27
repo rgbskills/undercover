@@ -3,7 +3,7 @@ import ProductList from "./ProductsList";
 export default async function Shop() {
 
   return (
-    <div className="mb-12 pt-4">
+    <div className="mb-12">
       <ProductList />
     </div>
   );
