@@ -16,7 +16,8 @@ import {
   MdAddShoppingCart,
   MdDeleteForever,
   MdAddCircle,
-  MdRemoveCircle
+  MdRemoveCircle,
+  MdMenu
  } from "react-icons/md";
 import Image from 'next/image';
 
@@ -39,12 +40,22 @@ export const Icons = {
   delete: () => <MdDeleteForever size={14} />,
   increment: () => <MdAddCircle size={14} />,
   decrement: () => <MdRemoveCircle size={14} />,
+  hamislife: () => <MdMenu size={24} />,
   logo: () => (
     <Image
       priority
       width={131}
       height={51}
       src="/logo.svg"
+      alt="UnderCover logo"
+    />
+  ),
+  logosmall: () => (
+    <Image
+      priority
+      width={32}
+      height={43}
+      src="/logo_small.svg"
       alt="UnderCover logo"
     />
   ),

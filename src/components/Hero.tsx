@@ -60,7 +60,15 @@ const Hero: React.FC<HeroProps> = ({ images, button, interval = 3000 }) => {
    */
   return (
     <div className={`flex justify-center items-center bg-black w-full relative border-t border-b border-[#0E142D]`}>
-      <div className="relative" style={{width: `${images[0].width}px`, height: `${images[0].height}px`}}>
+      <div className="relative">
+        <Image
+          src={images[0].url}
+          alt={"placeholder"}
+          width={images[0].width}
+          height={images[0].height}
+          className="h-auto w-auto"
+          quality={100}
+        />
         {images.map((image, index) => (
           <div
             key={index}
@@ -78,14 +86,15 @@ const Hero: React.FC<HeroProps> = ({ images, button, interval = 3000 }) => {
               alt={`Slide ${index + 1}`} // z-index cant be 0
               width={image.width}
               height={image.height}
+              className="h-auto w-auto"
               quality={100}
             />
           </div>
         ))}
         {button && (
-          <div className="z-50 absolute bottom-12 left-0 w-full flex justify-center">
+          <div className="z-50 absolute md:bottom-12 bottom-3 left-0 w-full flex justify-center">
             <div>
-              <Button href={button?.href} className="uppercase">
+              <Button href={button?.href} className="uppercase sm:h-12 sm:text-sm text-xs h-8">
                 {button?.text}
               </Button>
             </div>

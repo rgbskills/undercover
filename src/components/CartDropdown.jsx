@@ -11,6 +11,7 @@ export default function Shop() {
   return (
     <Dropdown
       closeOnClickInside
+      dropDirection="left"
       button={
         <Button>
           <Icons.cart />
