@@ -1,10 +1,11 @@
+import Layout from "@/components/Layout";
 import ProductList from "./ProductsList";
 
 export default async function Shop() {
 
   return (
-    <div className="mb-12">
+    <Layout wide>
       <ProductList />
-    </div>
+    </Layout>
   );
 }

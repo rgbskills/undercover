@@ -63,7 +63,7 @@ export function LoginPage() {
   }
 
   return (
-    <div className="w-[305px] mx-auto mt-28">
+    <div>
       <h1 className="text-2xl text-slate-500 text-center mb-9">Welcome back!</h1>
       {hasLogged && (
         <div>

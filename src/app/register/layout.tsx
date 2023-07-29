@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import { ServerAuthProvider } from "../../auth/server-auth-provider";
 
 export default function RegisterLayout({
@@ -6,5 +7,11 @@ export default function RegisterLayout({
   children: React.ReactNode;
 }) {
   /*TODO @ts-expect-error https://github.com/vercel/next.js/issues/43537 */
-  return <ServerAuthProvider>{children}</ServerAuthProvider>;
+  return (
+    <Layout narrow>
+      <ServerAuthProvider>
+        {children}
+      </ServerAuthProvider>
+    </Layout>
+  );
 }

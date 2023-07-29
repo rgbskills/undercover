@@ -6,6 +6,7 @@ import { authConfig } from "./config/server-config";
 const PUBLIC_PATHS = [
   "/",
   "/logo.svg",
+  "/logo_small.svg",
   "/hero/slide1.png",
   "/hero/slide2.png",
   "/hero/slide3.png",

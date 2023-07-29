@@ -20,7 +20,7 @@ function Navigation() {
   const { user } = useAuth();
 
   return (
-    <div className={`flex justify-between content-center mt-6 ${pathname === "/" ? "mb-6" : "mb-16"} mx-5`}>
+    <div className={`flex justify-between content-center mt-6 ${pathname === "/" ? "mb-6" : "mb-16"} mx-4`}>
       <div>
         <Link href="/" passHref={true} className="flex items-center space-x-2">
           <span className="hidden md:block">
@@ -79,7 +79,7 @@ function Navigation() {
           {!user ? (
             <Button href="/login" className="overflow-hidden">
               <Icons.user />
-              <span>Login</span>
+              <span className="hidden lg:block">Login</span>
             </Button>
           ) : (
             <Button href="/account" className="overflow-hidden relative">

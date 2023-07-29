@@ -23,7 +23,7 @@ export default function Shop() {
   if (isLoading) return <p>Loading...</p>
   if (!products) return <p>No products data</p>
   return (
-    <div className='grid grid-cols-3 gap-12'>
+    <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12'>
       {products.map((product) => (
         <div key={product.id}>
           <div className='relative'>

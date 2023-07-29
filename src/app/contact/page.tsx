@@ -1,7 +1,9 @@
+import Layout from "@/components/Layout";
+
 export default async function Contact() {
   return (
-    <div>
+    <Layout wide>
       Contact page
-    </div>
+    </Layout>
   );
 }

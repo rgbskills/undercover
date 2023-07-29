@@ -1,7 +1,9 @@
+import Layout from "@/components/Layout";
+
 export default async function Story() {
   return (
-    <div>
+    <Layout>
       Company story / about
-    </div>
+    </Layout>
   );
 }

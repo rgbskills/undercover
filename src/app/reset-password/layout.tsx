@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import { ServerAuthProvider } from "../../auth/server-auth-provider";
 
 export default function ResetPasswordLayout({
@@ -5,5 +6,11 @@ export default function ResetPasswordLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <ServerAuthProvider>{children}</ServerAuthProvider>;
+  return (
+    <Layout narrow>
+      <ServerAuthProvider>
+        {children}
+      </ServerAuthProvider>
+    </Layout>
+    );
 }

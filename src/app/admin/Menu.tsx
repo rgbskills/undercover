@@ -9,7 +9,7 @@ import { siteConfig } from '@/config/site';
 import { useAuth } from "@/auth/context";
 
 
-export default function AccountMenu() {
+export default function AdminMenu() {
   const { user } = useAuth();
   const { getFirebaseAuth } = useFirebaseAuth();
   const [hasLoggedOut, setHasLoggedOut] = React.useState(false);
