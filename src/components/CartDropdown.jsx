@@ -5,9 +5,31 @@ import Button from '@/components/Button';
 import {Icons} from '@/components/Icons';
 import { CartContext } from '@/app/shop/CartProvider';
 import Dropdown from "./Dropdown";
+import { useLoadingCallback } from "react-loading-hook";
+import { useRouter } from "next/navigation";
 
 export default function Shop() {
+  const router = useRouter();
   const { items, count, total, incrementCartItem, decrementCartItem, clearCart, removeCartItem } = React.useContext(CartContext);
+  const [handleOrder, isOrderLoading] = useLoadingCallback(async () => {
+    const response = await fetch("/api/orders", {
+      method: "POST",
+      // TODO: should add curency and locale
+      body: JSON.stringify({
+        order_lines: items,
+        order_amount: total,
+        order_tax_amount: 0,
+      })
+    });
+
+    // TODO: maybe a try catch here...
+    const {orderId} = await response.json();
+    clearCart()
+    // TODO: go to order when thats done
+    //router.push(`/account/orders/${orderId}`);
+    router.push(`/account/orders`);
+  });
+
   return (
     <Dropdown
       closeOnClickInside
@@ -86,8 +108,11 @@ export default function Shop() {
           <Button
             unstyled
             className="flex justify-center items-center gap-3 h-12 px-6 rounded-md bg-blue-900 text-sm font-semibold hover:bg-blue-800 transition-all w-full"
+            loading={isOrderLoading}
+            disabled={isOrderLoading}
+            onClick={handleOrder}
           >
-            Go to checkout
+            Place fake order
           </Button>
         </>
       )}

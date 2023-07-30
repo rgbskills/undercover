@@ -58,7 +58,7 @@ export async function PUT(request: NextRequest) {
   const db = getFirestore(getFirebaseAdminApp());
   const productRef = db.collection('products').doc(body.id);
 
-  const response = await productRef.update(fakeProduct);
+  await productRef.update(fakeProduct);
   return NextResponse.json({id: body.id, ...fakeProduct});
 }
 

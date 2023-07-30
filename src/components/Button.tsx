@@ -23,7 +23,9 @@ const Button: React.FC<ButtonProps> = ({
   type = "button", // Default to "button" type
   unstyled,
 }) => {
-  const buttonClasses = `${unstyled ? "" : "flex items-center gap-3 h-12 px-6 rounded-md bg-blue-950 text-sm font-semibold hover:bg-blue-900 transition-all"} ${className || ""}`;
+  const btnDisabled = "bg-gray-600 text-gray-400 pointer-events-none";
+  const btnEnabled = "bg-blue-950 text-white hover:bg-blue-900";
+  const buttonClasses = `${unstyled ? `${disabled || loading ? btnDisabled : ""}` : `flex items-center gap-3 h-12 px-6 rounded-md text-sm font-semibold transition-all ${disabled || loading ? btnDisabled : btnEnabled}}`} ${className || ""}`;
 
   if (href) {
     return (
