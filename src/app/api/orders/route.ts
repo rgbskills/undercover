@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
+//TODO: This should also be enforced in Firestore security rules
 export async function GET(request: NextRequest) {
   const tokens = await getTokens(request.cookies, authConfig);
 
