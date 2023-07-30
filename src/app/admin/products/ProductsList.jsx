@@ -42,7 +42,7 @@ const ProductList = () => {
   }, [])
 
   if (isLoading) return <p>Loading...</p>
-  if (!products) return <p>No products data</p>
+  if (!products || !products.length) return <p>No products data</p>
 
   const DrpbtnStyle = "h-7 text-xs text-white uppercase font-semibold hover:bg-blue-800 w-full transition-all"
 

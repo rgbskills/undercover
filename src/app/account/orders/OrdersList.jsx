@@ -21,7 +21,7 @@ const OrdersList = () => {
   }, [])
 
   if (isLoading) return <p>Loading...</p>
-  if (!orders) return <p>No orders data</p>
+  if (!orders || !orders.length) return <p>No orders data</p>
 
   const DrpbtnStyle = "h-7 text-xs text-white uppercase font-semibold hover:bg-blue-800 w-full transition-all"
 

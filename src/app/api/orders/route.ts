@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
 
   const order = {
     ...body,
+    uid: tokens.decodedToken.uid,
     createdAt: Timestamp.fromDate(new Date()) // Use Timestamp.fromDate() for Firestore timestamp
   };
 
@@ -37,16 +38,24 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET() {
-  const db = getFirestore(getFirebaseAdminApp());
+export async function GET(request: NextRequest) {
+  const tokens = await getTokens(request.cookies, authConfig);
 
-  try {
-    const snapshot = await db.collection("orders").get();
-    const orders = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-
-    return NextResponse.json(orders);
-  } catch (error) {
-    console.error("Error fetching orders:", error);
-    return NextResponse.error();
+  if (!tokens) {
+    throw new Error("There was an error getting tokens");
   }
+
+  const db = getFirestore();
+  const ordersRef = db.collection("orders");
+
+  // Add a where clause to filter orders by the user's UID
+  const userOrdersQuery = ordersRef.where("uid", "==", tokens.decodedToken.uid);
+  const snapshot = await userOrdersQuery.get();
+
+  const orders = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+  return new NextResponse(JSON.stringify(orders), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
