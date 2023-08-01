@@ -5,17 +5,23 @@ import { getTokens } from "next-firebase-auth-edge/lib/next/tokens";
 import { getFirebaseAdminApp } from "../../firebase";
 import { faker } from '@faker-js/faker';
 
+const fakeProduct = {
+  title: faker.commerce.productName(),
+  price: faker.commerce.price(),
+  imageUrl: faker.image.urlPicsumPhotos({ width: 640, height: 480}),
+  inventory: {
+    sku: faker.number.int({min: 1000000, max: 9999999}),
+    status: 'enabled', //['disabled', 'enabled', 'in-stock', 'out-of-stock', 'backordered']
+    quantity: faker.number.int({min: 0, max: 500}),
+    lowQuantityWarning: faker.number.int({min: 0, max: 5}),
+  }
+}
+
 export async function POST(request: NextRequest) {
   const tokens = await getTokens(request.cookies, authConfig);
 
   if (!tokens) {
     throw new Error("There was an error getting tokens");
-  }
-
-  const fakeProduct = {
-    title: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    imageUrl: faker.image.urlPicsumPhotos({ width: 640, height: 480}),
   }
 
   const db = getFirestore(getFirebaseAdminApp());
@@ -47,12 +53,6 @@ export async function PUT(request: NextRequest) {
 
   if (!tokens) {
     throw new Error("There was an error getting tokens");
-  }
-
-  const fakeProduct = {
-    title: faker.commerce.productName(),
-    price: faker.commerce.price(),
-    imageUrl: faker.image.urlPicsumPhotos({ width: 640, height: 480}),
   }
 
   const db = getFirestore(getFirebaseAdminApp());

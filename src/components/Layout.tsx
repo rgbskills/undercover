@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({ narrow, wide, sidebar, children }) => {
 
   // Update classes based on the provided props
   if (narrow) {
-    layoutClasses = 'w-full max-w-[600px] mx-auto px-4';
+    layoutClasses = 'w-full max-w-[305px] mx-auto px-4';
   } else if (wide) {
     layoutClasses = 'w-full max-w-[1600px] mx-auto px-4';
   }
