@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
     createdAt: Timestamp.fromDate(new Date()) // Use Timestamp.fromDate() for Firestore timestamp
   };
 
-  const db = getFirestore();
+  const db = getFirestore(getFirebaseAdminApp());
   const orders = db.collection("orders");
 
   // should use runTransaction() when you need to handle store updates atomically
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
     throw new Error("There was an error getting tokens");
   }
 
-  const db = getFirestore();
+  const db = getFirestore(getFirebaseAdminApp());
   const ordersRef = db.collection("orders");
 
   // Add a where clause to filter orders by the user's UID
