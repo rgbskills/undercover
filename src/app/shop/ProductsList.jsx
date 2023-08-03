@@ -21,7 +21,7 @@ export default function Shop() {
   }, [])
 
   if (isLoading) return <p>Loading...</p>
-  if (!products) return <p>No products data</p>
+  if (!products || !products.length) return <p>No products data</p>
   return (
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12'>
       {products.map((product) => (
@@ -32,7 +32,7 @@ export default function Shop() {
               src={product.imageUrl}
               width="400"
               height="400"
-              alt={product.title}
+              alt={product.name}
               className='rounded-lg w-full h-auto'
             />
             <div className='absolute bottom-4 right-4 flex'>
@@ -46,7 +46,7 @@ export default function Shop() {
             </div>
           </div>
           <div className='flex justify-between items-center text-white mt-2'>
-            <h2 className='text-base font-semibold'>{product.title}</h2>
+            <h2 className='text-base font-semibold'>{product.name}</h2>
             <h3 className='text-2xl text-green-100'>${product.price}</h3>
           </div>
         </div>

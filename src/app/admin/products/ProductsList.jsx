@@ -62,7 +62,7 @@ const ProductList = () => {
           <div className="text-sm flex gap-4 items-center">
             <Image
               src={product.imageUrl}
-              alt={product.title}
+              alt={product.name}
               className="
                 rounded-md
                 w-9
@@ -72,7 +72,7 @@ const ProductList = () => {
               width="36"
               height="36"
             />
-            {product.title}
+            {product.name}
           </div>
           <div className="text-sm flex items-center">
             ${product.price}

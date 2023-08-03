@@ -60,9 +60,9 @@ export default function Shop() {
             items.map((item) => (
               <div key={item.id} className="flex justify-between mb-3">
                 <div className='flex'>
-                  <Image src={item.imageUrl} width="56" height="56" alt={item.title} className="rounded-md w-auto h-auto" />
+                  <Image src={item.imageUrl} width="56" height="56" alt={item.name} className="rounded-md w-auto h-auto" />
                   <div className='flex flex-col justify-between ml-1'>
-                    <h1 className="text-xs text-white">{item.title}</h1>
+                    <h1 className="text-xs text-white">{item.name}</h1>
                     <div className='flex gap-3 items-center'>
                       <Button
                         unstyled
