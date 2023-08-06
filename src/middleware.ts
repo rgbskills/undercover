@@ -5,13 +5,6 @@ import { authConfig } from "./config/server-config";
 
 const PUBLIC_PATHS = [
   "/",
-  "/logo.svg",
-  "/logo_small.svg",
-  "/hero/slide1.png",
-  "/hero/slide2.png",
-  "/hero/slide3.png",
-  "/hero/slide4.png",
-  "/hero/slide5.png",
   "/register",
   "/login",
   "/reset-password",
@@ -52,5 +45,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/", "/((?!_next|favicon.ico|api).*)", "/api/login", "/api/logout"],
+  matcher: ["/", "/((?!_next|favicon.ico|api|.*\\.).*)", "/api/login", "/api/logout"],
 };
